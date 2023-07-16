@@ -1,8 +1,16 @@
 from string import ascii_lowercase
 
 QUESTIONS = [
-    "When was the first known use of the word 'quiz'",
-    "Which built-in function can get information from the user",
+    "I am outgoing and sociable",
+    "I have an assertive personality",
+    "I tend to be lazy",
+    "I am systematic, and like to keep things in order",
+    "I handles stress well",
+    "I have a strong fascination for art, music, or literature",
+    "I have difficulty imagining things",
+    "I am persistent",
+    "I tend to assume the best about people",
+    "I tend to start arguments with others"
 ]
 
 CHOICES = "INACCURATE\t1\t2\t3\t4\t5\tACCURATE"
