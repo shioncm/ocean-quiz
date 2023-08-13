@@ -366,6 +366,7 @@ def show_next_question():
     # Save the answer for the current question
     selected_option = answer_var.get()
     if selected_option:
+        # Appends integer (1,2,3,4,5) corresponding to selected option
         user_answers.append(int(selected_option))
     else:
         user_answers.append(0)  # If no option is selected, score as 0
@@ -419,9 +420,29 @@ def show_result():
     result_frame = ttk.Frame(root)
     result_frame.pack(pady=20)
 
-    total_score = sum(user_answers)
-    result_label = ttk.Label(result_frame, text=f"Your total score is: {total_score}")
-    result_label.pack(pady=10)
+    user_scores = [20, 14, 14, 38, 8]
+
+    for num in range(0, len(user_answers), 5):
+        user_scores[0] += user_answers[num] * (-1) ** num
+        user_scores[1] -= user_answers[num+1] * (-1) ** num
+        user_scores[2] += user_answers[num+2] * (-1) ** num
+        user_scores[3] -= user_answers[num+3] * (-1) ** num
+        user_scores[4] += user_answers[num+4] * (-1) ** num
+
+    # total_score = sum(user_answers)
+
+    # result_label = ttk.Label(result_frame, text=f"Your total score is: {total_score}")
+    # result_label.pack(pady=10)
+    result_E = ttk.Label(result_frame, text=f"Extroversion (E): {user_scores[0]}")
+    result_E.pack(pady=10)
+    result_A = ttk.Label(result_frame, text=f"Agreeableness (A): {user_scores[1]}")
+    result_A.pack(pady=10)
+    result_C = ttk.Label(result_frame, text=f"Conscientiousness (C): {user_scores[2]}")
+    result_C.pack(pady=10)
+    result_N = ttk.Label(result_frame, text=f"Neuroticism (N): {user_scores[3]}")
+    result_N.pack(pady=10)
+    result_O = ttk.Label(result_frame, text=f"Openness to Experience (O): {user_scores[4]}")
+    result_O.pack(pady=10)
 
 # Start the application with the demographics page
 demographics_frame.pack()

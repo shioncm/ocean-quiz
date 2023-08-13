@@ -71,23 +71,23 @@ def start_screen():
             print("Invalid input. Please try again.")
 
 def run_quiz():
-    # user_choices = []
+    user_choices = []
 
-    # for num, question in enumerate(QUESTIONS, start=1):
-    #     print(f"\nQuestion {num}:")
-    #     print(f"{question}?")
-    #     print(ALL_CHOICES)
-    #     while (True):
-    #         choice = input("Choice? ")
-    #         if choice.isdigit()  and int(choice) > 0 and int(choice) < 6:
-    #             user_choices.append(choice)
-    #             break
-    #         else:
-    #             print("Invalid number. Please try again.")
+    for num, question in enumerate(QUESTIONS, start=1):
+        print(f"\nQuestion {num}:")
+        print(f"{question}?")
+        print(ALL_CHOICES)
+        while (True):
+            choice = input("Choice? ")
+            if choice.isdigit()  and int(choice) > 0 and int(choice) < 6:
+                user_choices.append(choice)
+                break
+            else:
+                print("Invalid number. Please try again.")
     
-    # For debugging purposes, ALL_USER_CHOICES will be set to a random
-    # list of 50 choices, ranging from 1 to 5.
-    user_choices = [random.randint(1, 5) for x in range(0, 50)]
+    # For debugging purposes, ALL_USER_CHOICES can be set to a random
+    # list of 50 choices, ranging from 1 to 5, with line below
+    # user_choices = [random.randint(1, 5) for x in range(0, 50)]
 
     user_scores = calc_score(user_choices)
     end_screen(user_choices, user_scores)
