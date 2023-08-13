@@ -79,16 +79,15 @@ def run_quiz():
         print(ALL_CHOICES)
         while (True):
             choice = input("Choice? ")
-
-            if choice.isnumeric() and choice.replace(".", "").isnumeric() == False and int(choice) > 0 and int(choice) < 6:
+            if choice.isdigit()  and int(choice) > 0 and int(choice) < 6:
                 user_choices.append(choice)
                 break
             else:
                 print("Invalid number. Please try again.")
     
-    # For debugging purposes, ALL_USER_CHOICES will be set to a random
-    # list of 50 choices, ranging from 1 to 5.
-    user_choices = [random.randint(1, 5) for x in range(0, 50)]
+    # For debugging purposes, ALL_USER_CHOICES can be set to a random
+    # list of 50 choices, ranging from 1 to 5, with line below
+    # user_choices = [random.randint(1, 5) for x in range(0, 50)]
 
     user_scores = calc_score(user_choices)
     end_screen(user_choices, user_scores)
@@ -100,26 +99,39 @@ def calc_score(user_choices):
     # score C : scores[2]
     # score N : scores[3]
     # score O : scores[4]
-    scores = [20, 14, 14, 38, 8]
+    user_scores = [20, 14, 14, 38, 8]
 
     for num in range(0, len(user_choices), 5):
-        scores[0] += user_choices[num] * (-1) ** num
-        scores[1] -= user_choices[num+1] * (-1) ** num
-        scores[2] += user_choices[num+2] * (-1) ** num
-        scores[3] -= user_choices[num+3] * (-1) ** num
-        scores[4] += user_choices[num+4] * (-1) ** num
+        user_scores[0] += user_choices[num] * (-1) ** num
+        user_scores[1] -= user_choices[num+1] * (-1) ** num
+        user_scores[2] += user_choices[num+2] * (-1) ** num
+        user_scores[3] -= user_choices[num+3] * (-1) ** num
+        user_scores[4] += user_choices[num+4] * (-1) ** num
 
-    return scores
+    return user_scores
 
 def end_screen(user_choices, user_scores):
     print("\nThanks for playing!")
     print("\nThe following are your scores: ")
-    print("E: " + str(user_scores[0]))
-    print("A: " + str(user_scores[1]))
-    print("C: " + str(user_scores[2]))
-    print("N: " + str(user_scores[3]))
-    print("O: " + str(user_scores[4]) + "\n")
+    
+    print("	E: " + str(user_scores[0]))
+    print("	A: " + str(user_scores[1]))
+    print("	C: " + str(user_scores[2]))
+    print("	N: " + str(user_scores[3]))
+    print("	O: " + str(user_scores[4]) + "\n")
+    
+    max_score = max(user_scores)
 
+    if max_score == user_scores[0]:
+        print("Your max score is E\n")
+    elif max_score == user_scores[1]:
+        print("Your max score is A\n")
+    elif max_score == user_scores[2]:
+        print("Your max score is C\n")
+    elif max_score == user_scores[3]:
+        print("Your max score is N\n")
+    elif max_score == user_scores[4]:
+        print("Your max score is O\n")
 
     while(True):
         user_choice = input("Review your choices? (y/n) ")
