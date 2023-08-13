@@ -56,12 +56,14 @@ QUESTIONS = [
 
 ALL_CHOICES = "INACCURATE\t1\t2\t3\t4\t5\tACCURATE"
 
+# Function to display option to start or end the quiz
 def start_screen():
     print("To start the OCEAN quiz, enter 's'")
     print("To exit this app, enter 'q'")
     
+    # Loop to ensure user input is valid (s or q)
     while(True):
-        user_choice = input("Enter 's' or 'q': ")
+        user_choice = input("Enter 's' to start or 'q' to quit quiz: ")
 
         if(user_choice == 's'):
             run_quiz()
@@ -70,6 +72,7 @@ def start_screen():
         else:
             print("Invalid input. Please try again.")
 
+# Function to show questions and choices corresponding to question
 def run_quiz():
     user_choices = []
 
@@ -77,6 +80,8 @@ def run_quiz():
         print(f"\nQuestion {num}:")
         print(f"{question}?")
         print(ALL_CHOICES)
+        # Loop to guarrantee user cannot move to next question until a
+        # valid choice is entered.
         while (True):
             choice = input("Choice? ")
             if choice.isdigit()  and int(choice) > 0 and int(choice) < 6:
@@ -92,6 +97,8 @@ def run_quiz():
     user_scores = calc_score(user_choices)
     end_screen(user_choices, user_scores)
 
+# Function to calculate the user score for each of the five
+# personality categories
 def calc_score(user_choices):
     # List to store user OCEAN scores. 
     # score E : scores[0]
@@ -110,6 +117,8 @@ def calc_score(user_choices):
 
     return user_scores
 
+# Function to display all five user scores, the maximum score,
+# and optionally review all answered to questions.
 def end_screen(user_choices, user_scores):
     print("\nThanks for playing!")
     print("\nThe following are your scores: ")
@@ -133,6 +142,7 @@ def end_screen(user_choices, user_scores):
     elif max_score == user_scores[4]:
         print("Your max score is O\n")
 
+    # Loop to ensure user chooses y or n
     while(True):
         user_choice = input("Review your choices? (y/n) ")
         if(user_choice == 'y'):
@@ -149,5 +159,3 @@ def end_screen(user_choices, user_scores):
             print("Invalid input. Please try again.")
 
 start_screen()
-
-    
