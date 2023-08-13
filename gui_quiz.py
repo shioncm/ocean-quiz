@@ -428,11 +428,7 @@ def show_result():
         user_scores[2] += user_answers[num+2] * (-1) ** num
         user_scores[3] -= user_answers[num+3] * (-1) ** num
         user_scores[4] += user_answers[num+4] * (-1) ** num
-
-    # total_score = sum(user_answers)
-
-    # result_label = ttk.Label(result_frame, text=f"Your total score is: {total_score}")
-    # result_label.pack(pady=10)
+        
     result_E = ttk.Label(result_frame, text=f"Extroversion (E): {user_scores[0]}")
     result_E.pack(pady=10)
     result_A = ttk.Label(result_frame, text=f"Agreeableness (A): {user_scores[1]}")
