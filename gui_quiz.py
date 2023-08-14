@@ -420,14 +420,13 @@ def show_result():
     result_frame = ttk.Frame(root)
     result_frame.pack(pady=20)
 
-    user_scores = [20, 14, 14, 38, 8]
+    user_scores = [0, 0, 0, 0, 0]
 
-    for num in range(0, len(user_answers), 5):
-        user_scores[0] += user_answers[num] * (-1) ** num
-        user_scores[1] -= user_answers[num+1] * (-1) ** num
-        user_scores[2] += user_answers[num+2] * (-1) ** num
-        user_scores[3] -= user_answers[num+3] * (-1) ** num
-        user_scores[4] += user_answers[num+4] * (-1) ** num
+    user_scores[0] = 20 + user_answers[0] - user_answers[5] + user_answers[10] - user_answers[15] + user_answers[20] - user_answers[25] + user_answers[30] - user_answers[35] + user_answers[40] - user_answers[45]
+    user_scores[1] = 14 - user_answers[1] + user_answers[6] - user_answers[11] + user_answers[16] - user_answers[21] + user_answers[26] - user_answers[31]  + user_answers[36] + user_answers[41] + user_answers[46]
+    user_scores[2] = 14 + user_answers[2] - user_answers[7] + user_answers[12] - user_answers[17] + user_answers[22]  - user_answers[27] + user_answers[32] - user_answers[37] + user_answers[42] + user_answers[47] 
+    user_scores[3] = 38 - user_answers[3] + user_answers[8] - user_answers[13] + user_answers[18] - user_answers[23] - user_answers[28] - user_answers[33] - user_answers[38] - user_answers[43] - user_answers[48]
+    user_scores[4] = 8 + user_answers[4] - user_answers[9] + user_answers[14] - user_answers[19] + user_answers[24] - user_answers[29] + user_answers[34] + user_answers[39] + user_answers[44] + user_answers[49] 
         
     result_E = ttk.Label(result_frame, text=f"Extroversion (E): {user_scores[0]}")
     result_E.pack(pady=10)

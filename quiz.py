@@ -85,7 +85,7 @@ def run_quiz():
         while (True):
             choice = input("Choice? ")
             if choice.isdigit()  and int(choice) > 0 and int(choice) < 6:
-                user_choices.append(choice)
+                user_choices.append(int(choice))
                 break
             else:
                 print("Invalid number. Please try again.")
@@ -99,21 +99,20 @@ def run_quiz():
 
 # Function to calculate the user score for each of the five
 # personality categories
-def calc_score(user_choices):
+def calc_score(ul):
     # List to store user OCEAN scores. 
     # score E : scores[0]
     # score A : scores[1]
     # score C : scores[2]
     # score N : scores[3]
     # score O : scores[4]
-    user_scores = [20, 14, 14, 38, 8]
+    user_scores = [0, 0, 0, 0, 0]
 
-    for num in range(0, len(user_choices), 5):
-        user_scores[0] += user_choices[num] * (-1) ** num
-        user_scores[1] -= user_choices[num+1] * (-1) ** num
-        user_scores[2] += user_choices[num+2] * (-1) ** num
-        user_scores[3] -= user_choices[num+3] * (-1) ** num
-        user_scores[4] += user_choices[num+4] * (-1) ** num
+    user_scores[0] = 20 + ul[0] - ul[5] + ul[10] - ul[15] + ul[20] - ul[25] + ul[30] - ul[35] + ul[40] - ul[45]
+    user_scores[1] = 14 - ul[1] + ul[6] - ul[11] + ul[16] - ul[21] + ul[26] - ul[31]  + ul[36] + ul[41] + ul[46]
+    user_scores[2] = 14 + ul[2] - ul[7] + ul[12] - ul[17] + ul[22]  - ul[27] + ul[32] - ul[37] + ul[42] + ul[47] 
+    user_scores[3] = 38 - ul[3] + ul[8] - ul[13] + ul[18] - ul[23] - ul[28] - ul[33] - ul[38] - ul[43] - ul[48]
+    user_scores[4] = 8 + ul[4] - ul[9] + ul[14] - ul[19] + ul[24] - ul[29] + ul[34] + ul[39] + ul[44] + ul[49] 
 
     return user_scores
 
@@ -123,24 +122,24 @@ def end_screen(user_choices, user_scores):
     print("\nThanks for playing!")
     print("\nThe following are your scores: ")
     
-    print("	E: " + str(user_scores[0]))
-    print("	A: " + str(user_scores[1]))
-    print("	C: " + str(user_scores[2]))
-    print("	N: " + str(user_scores[3]))
-    print("	O: " + str(user_scores[4]) + "\n")
+    print("     Extroversion (E): " + str(user_scores[0]))
+    print("     Agreeableness (A): " + str(user_scores[1]))
+    print("     Conscientiousness (C): " + str(user_scores[2]))
+    print("     Neuroticism (N): " + str(user_scores[3]))
+    print("     Openness to Experience (O): " + str(user_scores[4]) + "\n")
     
     max_score = max(user_scores)
 
     if max_score == user_scores[0]:
-        print("Your max score is E\n")
+        print("Your max score is Extroversion (E)\n")
     elif max_score == user_scores[1]:
-        print("Your max score is A\n")
+        print("Your max score is Agreeableness (A)\n")
     elif max_score == user_scores[2]:
-        print("Your max score is C\n")
+        print("Your max score is Conscientiousness (C)\n")
     elif max_score == user_scores[3]:
-        print("Your max score is N\n")
+        print("Your max score is Neuroticism (N)\n")
     elif max_score == user_scores[4]:
-        print("Your max score is O\n")
+        print("Your max score is Openness to Experience (O)\n")
 
     # Loop to ensure user chooses y or n
     while(True):
