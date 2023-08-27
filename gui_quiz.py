@@ -368,14 +368,16 @@ def show_next_question():
     if selected_option:
         # Appends integer (1,2,3,4,5) corresponding to selected option
         user_answers.append(int(selected_option))
-    else:
-        user_answers.append(0)  # If no option is selected, score as 0
-
+        # Move to the next question
+        current_question_index += 1
+        # Update progress bar
+        progress_var.set((current_question_index / len(quiz_data)) * 200)
+        
+    # user_answers.append(0)  # If no option is selected, score as 0
     # Move to the next question
-    current_question_index += 1
-
+    # current_question_index += 1
     # Update progress bar
-    progress_var.set((current_question_index / len(quiz_data)) * 100)
+    # progress_var.set((current_question_index / len(quiz_data)) * 100)
 
     # Check if all questions are answered
     if current_question_index == len(quiz_data):
@@ -391,7 +393,7 @@ def show_question():
 
 # Create the question label
 question_label = ttk.Label(quiz_frame, text="", wraplength=300)
-question_label.pack(pady=10)
+question_label.pack(pady=10, fill=tk.NONE)
 
 # Option selection variable
 answer_var = tk.StringVar()
@@ -403,16 +405,16 @@ for i in range(5):
     frame.pack(side=tk.TOP, padx=10, pady=5, anchor=tk.W)  # Stack the frames vertically and anchor them to the west (left-aligned)
     button = ttk.Radiobutton(frame, text="", variable=answer_var, value=i + 1)
     option_buttons.append(button)
-    button.pack(side=tk.LEFT)  # Align the buttons colinearly inside their respective frames
+    button.pack(side=tk.LEFT, fill=tk.NONE)  # Align the buttons colinearly inside their respective frames
 
 # Next button
 next_button = ttk.Button(quiz_frame, text="Next", command=show_next_question)
-next_button.pack(pady=10)
+next_button.pack(pady=10, fill=tk.NONE)
 
 # Progress bar
 progress_var = tk.DoubleVar()
-progress_bar = ttk.Progressbar(quiz_frame, variable=progress_var, maximum=100)
-progress_bar.pack(side=tk.BOTTOM, fill=tk.X)  # Set fill=tk.X for the progress_bar
+progress_bar = ttk.Progressbar(quiz_frame, variable=progress_var, maximum=200, length=200)
+progress_bar.pack(side=tk.BOTTOM, fill=tk.NONE)  # Set fill=tk.NONE to prevent progress bar from resizing
 
 # Function to display the final score
 def show_result():
