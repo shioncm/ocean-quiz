@@ -373,12 +373,6 @@ def show_next_question():
         # Update progress bar
         progress_var.set((current_question_index / len(quiz_data)) * 200)
         
-    # user_answers.append(0)  # If no option is selected, score as 0
-    # Move to the next question
-    # current_question_index += 1
-    # Update progress bar
-    # progress_var.set((current_question_index / len(quiz_data)) * 100)
-
     # Check if all questions are answered
     if current_question_index == len(quiz_data):
         show_result()
@@ -390,7 +384,7 @@ def show_question():
     answer_var.set("")  # Clear the selected answer for the new question
     for i in range(5):
         option_buttons[i].config(text=quiz_data[current_question_index]["options"][i])
-"""
+
 # Create the question label
 question_label = ttk.Label(quiz_frame, text="", wraplength=300, anchor='w', justify='left')
 question_label.pack(pady=10, fill=tk.NONE)
@@ -410,35 +404,6 @@ for i in range(5):
 # Next button
 next_button = ttk.Button(quiz_frame, text="Next", command=show_next_question)
 next_button.pack(pady=10, fill=tk.NONE)
-"""
-
-# Create the question frame
-question_frame = ttk.Frame(quiz_frame)
-question_label = ttk.Label(question_frame, text="", wraplength=300, anchor='w', justify='left')
-question_label.pack(pady=10, fill=tk.NONE)
-
-# Create the answer options frame
-answer_options_frame = ttk.Frame(quiz_frame)
-
-answer_var = tk.StringVar()
-option_buttons = []
-for i in range(5):
-    frame = ttk.Frame(answer_options_frame)  # Create a separate frame for each button
-    frame.pack(side=tk.TOP, padx=10, pady=5, anchor=tk.W, fill=tk.NONE)  # Stack the frames vertically and anchor them to the west (left-aligned)
-    button = ttk.Radiobutton(frame, text="", variable=answer_var, value=i + 1)
-    option_buttons.append(button)
-    button.pack(side=tk.LEFT, fill=tk.NONE)  # Align the buttons colinearly inside their respective frames
-
-# Create the next button frame
-next_button_frame = ttk.Frame(quiz_frame)
-next_button = ttk.Button(next_button_frame, text="Next", command=show_next_question)
-next_button.pack(pady=10, fill=tk.NONE)
-
-# Pack the frames
-question_frame.pack(pady=10)
-answer_options_frame.pack(pady=10)
-next_button_frame.pack(pady=10)
-
 
 # Progress bar
 progress_var = tk.DoubleVar()
